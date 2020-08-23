@@ -1,0 +1,26 @@
+---
+- name: block and rescue method - block code for success and rescue code for rollback
+  hosts: all
+  vars:
+  - pkg: vsftpd
+  tasks:
+   - block:
+     - name: check the package
+       command: rpm -qa "{{pk}}"
+       register: out
+     - debug:
+        var: out
+     - name: install  vsftpd
+       yum:
+        name: "{{pkg}}"
+        state: present
+       when: out.stdout == ""
+     rescue:
+     - name: Check the service is already present
+       command: service "{{pkg}}" start
+       register: output
+       ignore_errors: yes
+     - debug:
+        var: output               
+
+

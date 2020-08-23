@@ -1,0 +1,15 @@
+---
+- name: creating a local variable
+  hosts: all
+  vars:
+   - package: httpd
+   - pathfile: /home/anisble/package.txt
+  tasks:
+   - name: uninstalling the package httpd
+     yum: 
+      name: "{{package}}"
+      state: absent
+   - name: creating a filepackage.txt
+     file:
+      path: "{{pathfile}}"
+      state: touch

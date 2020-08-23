@@ -1,0 +1,40 @@
+---
+- name: create user and groups 
+  hosts: all
+  roles: 
+   - examfun
+  tasks:
+   - name: create group
+     group:
+      name: "{{item}}"
+      state: present
+     with_items:
+      - admin
+      - developer
+      - monitoring
+   - name: create staff
+     user:
+      name: "{{item}}"
+      state: present
+      groups: admin,developer
+     with_items: 
+      - "{{staff}}"
+   - name: create guest
+     user:
+       name: "{{item}}"
+       state: present
+       groups: monitoring
+     with_items:
+       - "{{guests}}"
+   - name: revoke the user
+     user:
+      name: "{{item}}"
+      state: absent
+     with_items:
+      - "{{revoke}}"
+   - name: installing the patches
+     yum:
+      name: "{{item}}"
+      state: latest
+     with_items:
+      - "{{patches}}"    

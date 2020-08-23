@@ -1,0 +1,16 @@
+---
+ - name: just modify the file and restart daemon
+   hosts: node5
+   tasks:
+    - name: change the content of the httpd.conf in node5
+      copy:
+       content: |
+        this is an customized httpdconfiguration file
+       dest: /opt/httpd.conf
+      notify:
+        - restart httpd
+   handlers:
+    - name: restart httpd
+      service:
+       name: httpd
+       state: restarted  

@@ -1,0 +1,11 @@
+---
+- name: installing two packages
+  hosts: node5,node6
+  tasks:
+   - name: install ntp and nginx
+     yum:
+      name: "{{item}}"
+      state: present
+     loop: 
+       - nginx
+       - ntp      

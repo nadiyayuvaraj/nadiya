@@ -1,0 +1,22 @@
+---
+- name: install the package xinetd in node6 and uninstall wget in node5
+  hosts: all
+  tasks:
+   - name: check the package
+     command: rpm -qa 
+     register: output
+   - debug:
+      var: output
+   - name : install the Xinetd
+     yum:
+      name: xinetd
+      state: present
+     when: ansible_hostname == "node6"
+   - name: uninstall the package wget
+     yum:
+      name: wget 
+      state: absent
+     when: ansible_hostname == "node5" and output.stdout != ""
+
+
+    

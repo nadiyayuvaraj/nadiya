@@ -1,0 +1,12 @@
+---
+- name: Package installation
+  hosts: db
+  tasks:
+   - name: Installing package httpd
+     yum:
+       name: httpd
+       state: present
+   - name: Installing wget package
+     yum:
+       name: wget
+       state: present 

@@ -1,0 +1,21 @@
+---
+- name: create the file hardwarereport under /opt for node5 and node6
+  hosts: all
+  tasks:
+    - name: create user and group devops
+      file:
+       path: /opt/hardwarereport
+       state: touch
+       owner: devops
+       group: devops
+    - name: copy the  hardwarereport.j2
+      template:
+       src: hardwarereport.j2
+       dest: /opt/hardwarereport
+        
+        
+    
+    
+ 
+ 
+         

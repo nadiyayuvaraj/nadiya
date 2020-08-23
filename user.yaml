@@ -1,0 +1,17 @@
+---
+- name: create user devops in node5
+  hosts: node5
+  tasks:
+   - name: user devops create
+     user:
+      name: devops
+      state: present
+- name: group devops to create in node6
+  hosts: node6
+  tasks:
+   - name: group devops
+     group: 
+      name: devops
+      state: present
+   
+     

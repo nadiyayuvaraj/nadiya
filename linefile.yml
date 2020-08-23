@@ -1,0 +1,13 @@
+---
+ - name : replace the string with this content
+   hosts: localhost
+   tasks:
+    - name: replace
+      replace: 
+       path: linein
+       regexp: "The class are going good"
+       replace: "class"
+  
+
+    
+

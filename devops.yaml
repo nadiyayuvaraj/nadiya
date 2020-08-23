@@ -1,0 +1,11 @@
+---
+- name: create a file
+  hosts: node5
+  tasks: 
+  - name: create a file devops under /home/devops in node5
+    file:
+     path: /home/devops/devops.yaml
+     state: touch
+     owner: devops
+     group: devops
+      

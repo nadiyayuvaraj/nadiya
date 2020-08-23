@@ -1,0 +1,32 @@
+---
+ - name: create a file index.html
+   hosts: node5
+   vars:
+    - package: httpd
+    - pathfile: /var/www/html/index.html
+   tasks:
+    - name: installating httpd 
+      yum:
+       name: "{{package}}"
+       state: present
+    - name: creating a index.html
+      file: 
+       path: "{{pathfile}}"
+       state: touch
+    - name:
+      copy:
+       content: |
+         hello we are in devops now
+       dest: "{{pathfile}}"
+      notify:
+        - restart httpd
+   handlers: 
+      - name: restart httpd
+        service:
+         name: httpd
+         state: restarted   
+
+     
+  
+t
+

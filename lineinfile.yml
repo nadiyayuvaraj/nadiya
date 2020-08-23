@@ -1,0 +1,14 @@
+---
+ - name: add the linein file
+   hosts: localhost
+   tasks:
+    - name: add the line
+      lineinfile:
+       path: /etc/hosts
+       regexp: "169.254.169.254"
+       line: "10.0.0.7 node7.wegrow.com node7"
+       
+
+    
+       
+ 

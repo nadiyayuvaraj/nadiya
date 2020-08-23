@@ -1,0 +1,8 @@
+---
+ - name: copying the file
+   hosts: all
+   tasks:
+    - name: copy hostname.txt
+      copy: 
+       src: /home/anisble/prod/hostname.txt
+       dest: /tmp/

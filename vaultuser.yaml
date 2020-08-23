@@ -1,0 +1,11 @@
+---
+- name: User in dbgroup with vault password
+  hosts: db
+  vars_files:
+   - vault.yaml
+  tasks:
+   - name: user pooja 
+     user:
+      name: pooja
+      password: "{{ pooja1 | password_hash( 'sha512') }}"
+       
